@@ -1,0 +1,177 @@
+[
+    {
+        "name" : "Test 1 - Database Chinook exists",
+        "description" : "Verifies if database database exists in the MySQL server",
+        "sql_script" : "SELECT EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'Chinook') AS database_exists;",
+        "expected_result": true,
+        "information_on_failure": "There is no Database Chinook in the MySQL server"
+    },
+    {
+        "name" : "Test 2 - Database in use is Chinook",
+        "description" : "Verifies if the current database in use is Chinook",
+        "sql_script" : "SELECT DATABASE() = 'Chinook' AS database_in_use;",
+        "expected_result": true,
+        "information_on_failure": "The current database in use is not Chinook"
+    },
+    {
+        "name" : "Test 3 - Table Album exists",
+        "description" : "Verifies if table Album exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Album') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Album does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 4 - Table Artist exists",
+        "description" : "Verifies if table Artist exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Artist') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Artist does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 5 - Table Customer exists",
+        "description" : "Verifies if table Customer exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Customer') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Customer does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 6 - Table Employee exists",
+        "description" : "Verifies if table Employee exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Employee') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Employee does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 7 - Table Genre exists",
+        "description" : "Verifies if table Genre exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Genre') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Genre does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 8 - Table Invoice exists",
+        "description" : "Verifies if table Invoice exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Invoice') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Invoice does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 9 - Table InvoiceLine exists",
+        "description" : "Verifies if table InvoiceLine exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'InvoiceLine') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table InvoiceLine does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 10 - Table MediaType exists",
+        "description" : "Verifies if table MediaType exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'MediaType') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table MediaType does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 11 - Table Playlist exists",
+        "description" : "Verifies if table Playlist exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Playlist') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Playlist does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 12 - Table PlaylistTrack exists",
+        "description" : "Verifies if table PlaylistTrack exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'PlaylistTrack') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table PlaylistTrack does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 13 - Table Track exists",
+        "description" : "Verifies if table Track exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME = 'Track') AS table_exists;",
+        "expected_result": true,
+        "information_on_failure": "Table Track does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 14 - No unexpected tables",
+        "description" : "Verifies if there are any tables in the Chinook database that are not expected",
+        "sql_script" : "SELECT COUNT(*) = 0 AS no_unexpected_tables FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Chinook' AND TABLE_NAME NOT IN ('Album', 'Artist', 'Customer', 'Employee', 'Genre', 'Invoice', 'InvoiceLine', 'MediaType', 'Playlist', 'PlaylistTrack', 'Track');",
+        "expected_result": true,
+        "information_on_failure": "There are unexpected tables in the Chinook database"
+    } ,
+    {
+        "name" : "Test 15 - Constraint FK_AlbumArtistId exists",
+        "description" : "Verifies if constraint FK_AlbumArtistId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_AlbumArtistId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_AlbumArtistId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 16 - Constraint FK_CustomerSupportRepId exists",
+        "description" : "Verifies if constraint FK_CustomerSupportRepId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_CustomerSupportRepId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_CustomerSupportRepId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 17 - Constraint FK_EmployeeReportsTo exists",
+        "description" : "Verifies if constraint FK_EmployeeReportsTo exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_EmployeeReportsTo') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_EmployeeReportsTo does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 18 - Constraint FK_InvoiceCustomerId exists",
+        "description" : "Verifies if constraint FK_InvoiceCustomerId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_InvoiceCustomerId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_InvoiceCustomerId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 19 - Constraint FK_InvoiceLineInvoiceId exists",
+        "description" : "Verifies if constraint FK_InvoiceLineInvoiceId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_InvoiceLineInvoiceId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_InvoiceLineInvoiceId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 20 - Constraint FK_InvoiceLineTrackId exists",
+        "description" : "Verifies if constraint FK_InvoiceLineTrackId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_InvoiceLineTrackId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_InvoiceLineTrackId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 21 - Constraint FK_PlaylistTrackPlaylistId exists",
+        "description" : "Verifies if constraint FK_PlaylistTrackPlaylistId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_PlaylistTrackPlaylistId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_PlaylistTrackPlaylistId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 22 - Constraint FK_PlaylistTrackTrackId exists",
+        "description" : "Verifies if constraint FK_PlaylistTrackTrackId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_PlaylistTrackTrackId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_PlaylistTrackTrackId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 23 - Constraint FK_TrackAlbumId exists",
+        "description" : "Verifies if constraint FK_TrackAlbumId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_TrackAlbumId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_TrackAlbumId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 24 - Constraint FK_TrackGenreId exists",
+        "description" : "Verifies if constraint FK_TrackGenreId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_TrackGenreId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_TrackGenreId does not exist in the Chinook database"
+    },
+    {
+        "name" : "Test 25 - Constraint FK_TrackMediaTypeId exists",
+        "description" : "Verifies if constraint FK_TrackMediaTypeId exists in the Chinook database",
+        "sql_script" : "SELECT EXISTS(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = 'Chinook' AND CONSTRAINT_NAME = 'FK_TrackMediaTypeId') AS constraint_exists;",
+        "expected_result": true,
+        "information_on_failure": "Constraint FK_TrackMediaTypeId does not exist in the Chinook database"
+    }
+]
